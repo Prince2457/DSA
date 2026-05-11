@@ -1,4 +1,5 @@
 import csv
+from collections import defaultdict
 
 def encrypt(message, shift=3):
     encrypted_message1 = ""
@@ -113,7 +114,7 @@ def three_sum(nums):
         left = i + 1
         right = len(nums)- 1
         if i > 0 and nums[i] == nums[i-1]:
-            continuegit
+            continue
         while left < right:
             if nums[left] + nums[right] < target:
                 left += 1
@@ -130,3 +131,41 @@ def three_sum(nums):
 
 
 print(three_sum([-1, 0, 1, 2, -1, -1]))
+
+def pairs(nums):
+    seen = []
+    for i in range(len(nums)):
+        for j in range(i + 1,len(nums)):
+            seen.append((nums[i], nums[j]))
+    return seen        
+    
+
+print(pairs([1,2,3,4,5]))        
+
+a = [1,2,3,4,]
+def squares(nums):
+    seen = []
+    for i in range(len(a)):
+        squares = a[i] ** 2
+        seen.append(squares)
+    return seen
+
+a = [1,2,3,4,5]
+print(squares(a))
+
+def group_anagram(strs):
+    #first we create a dictionary that collects list
+    groups = defaultdict(list)
+
+    #loop through every word in string
+    for word in strs:
+        # sort and join the word
+        sorted_word = ''.join(sorted(word))
+
+        # add words to the list when sorted are the same as the key
+        groups[sorted_word].append(word)
+
+        # return the list of values in the dictionary
+    return list(groups.values())    
+
+print(group_anagram(["eat","tea","tan","ate","nat","bat"]))
