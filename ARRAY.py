@@ -107,14 +107,28 @@ def isPalindrome(s= str) -> bool:
 print(two_sum([1,2,3,4], 4))
 
 def three_sum(nums):
+    # first we sort the nums 
     nums.sort()
+
+    # create aaan empty list
     result = []
+
+    # we loop through every number
     for i in  range(len(nums)):
+
+        # set target which is the negative of the first number of the loop
         target = -nums[i]
+
+        # set the left pointer which is the second position of the loop
         left = i + 1
+
+        # set the right pointer which is the length of numbers minus 1(why because )
         right = len(nums)- 1
+
+        #if the current position is greater than zero and the value is equal to the previous value start the loop
         if i > 0 and nums[i] == nums[i-1]:
             continue
+        # start our pointers
         while left < right:
             if nums[left] + nums[right] < target:
                 left += 1
@@ -169,3 +183,38 @@ def group_anagram(strs):
     return list(groups.values())    
 
 print(group_anagram(["eat","tea","tan","ate","nat","bat"]))
+
+def top_k(nums,k):
+    count = {}
+    for i in nums:
+        if i in count:
+            count[i] += 1
+        else:
+            count[i] = 1
+    result = sorted(count.keys(), key=lambda i:count[i], reverse=True)
+    return result[0:k]
+print(top_k([1,1,1,2,2,3], 2))
+
+def k(nums):
+    count ={}
+    for i in nums:
+        if i in count:
+            count[i] += 1
+        else:
+            count[i] = 1
+    return count    
+
+print(k([1,1,1,2,2,3]))        
+
+def product(nums):
+    prefix =[1] * len(nums)
+    for i in range(1,len(nums)):
+        prefix[i] = prefix[i-1] * nums[i-1]
+    
+    suffix = [1] * len(nums) 
+    for i in range(len(nums)-2, -1, -1):
+        suffix[i] = suffix[i+1] * nums[i+1]   
+        answer = []
+    for i in range(len(nums)):
+        answer.append(prefix[i] * suffix[i])
+    return answer    
